@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" name="file" />
+        <input type="text" id="itemInput" name="item" placeholder="Item"/>
+        <input type="number" id="amountInput" name="amount" step="0.01" placeholder="Amount"/>
+        <input type="date" id="expenseDateInput" name="expenseDate" placeholder="Expense Date"/>
+        <input type="text" id="notesInput" name="notes" placeholder="Notes"/>
+        <button type="submit">Upload</button>
+    </form>
+    
+    <script>
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData();
+        formData.append('file', document.getElementById('fileInput').files[0]);
+        const ledger = {
+            item: document.getElementById('itemInput').value,
+            amount: document.getElementById('amountInput').value,
+            expenseDate: document.getElementById('expenseDateInput').value,
+            notes: document.getElementById('notesInput').value
+        };
+        formData.append('ledger', new Blob([JSON.stringify(ledger)], {
+            type: 'application/json'
+        }));
+    
+        fetch('/api/ledgers/upload-ledger', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    });
+    </script>
+</body>
+</html>
