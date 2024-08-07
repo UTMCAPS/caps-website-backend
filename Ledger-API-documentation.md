@@ -79,7 +79,7 @@ No parameters or body required.
 #### Example Request using `curl`:
 
 ```bash
-curl -X GET "http://localhost:8080/api/ledgers/invoice/random_uuid_invoice.jpg"
+curl -X GET "https://api.utmcaps.com/api/ledgers/invoice/random_uuid_invoice.jpg"
 ```
 
 #### Response
@@ -102,7 +102,7 @@ curl -X GET "http://localhost:8080/api/ledgers/invoice/random_uuid_invoice.jpg"
 #### Example Request using curl:
 
 ```bash
-curl -X GET "http://localhost:8080/api/ledgers/del-ledger/1"
+curl -X GET "https://api.utmcaps.com/api/ledgers/del-ledger/1"
 ```
 #### Response
 
